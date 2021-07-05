@@ -4,6 +4,16 @@ import React from 'react';
 
  
 class App extends React.Component{
+  constructor(props){
+    super(props);
+    console.log("create componont");
+  }
+  componentDidMount(){
+    console.log("after first render")
+  }
+  componentDidUpdate(){
+    console.log("after updated")
+  }
   state = {
     count: 0
   }; 
@@ -16,6 +26,7 @@ class App extends React.Component{
     this.setState(current => ({count: current.count - 1}));
   };
   render(){
+    console.log("render start");
     return(
     <div>
       <h1>im a clas {this.state.count}</h1>

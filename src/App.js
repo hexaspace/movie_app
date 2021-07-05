@@ -1,40 +1,53 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
- 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    console.log("create componont");
-  }
-  componentDidMount(){
-    console.log("after first render")
-  }
-  componentDidUpdate(){
-    console.log("after updated")
-  }
+class App extends React.Component {
   state = {
-    count: 0
-  }; 
-  add = () => {
-    console.log("add");
-    this.setState({count: this.state.count +1})
+    isLoading: true,
+    movies: []
   };
-  minus = () => {
-    console.log("minus");
-    this.setState(current => ({count: current.count - 1}));
+  getMovies = async () => {
+    const {data: {data: {movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    console.log(movies)
+    this.setState({movie:movies});
   };
-  render(){
-    console.log("render start");
-    return(
-    <div>
-      <h1>im a clas {this.state.count}</h1>
-      <button onClick={this.add}>add</button>
-      <button onClick={this.minus}>minus</button>
-    </div>
-    );
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 6000);
+    this.getMovies();
+  }
+  render() {
+    const { isLoading } = this.state;
+        return <div>
+      {isLoading ? "Loading" : "we're ready"}
+    </div>;
   }
 }
+// import React from 'react';
+// import axios from "axios";
+ 
+// class App extends React.Component{
+//   state = {
+//     movies: [],
+//     isLoading: true
+//   };
+//  //함수로 빼는 이유 : 받아오는데 시간이 걸려서. asyn를 conpoentDidMount앞에 붙여도 됨
+//   getMovies = async () => {
+//     const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+//   };
+//   componentDidMount(){
+//     console.log("didmount");
+//     this.getMovies();
+//   }
+//   render(){
+//     const {isLoading} = this.state;
+//     return <div>
+//       {isLoading ? "Loading" : "we're ready"}
+//     </div>;
+//   }
+// }
 
 export default App;

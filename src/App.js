@@ -6,16 +6,19 @@ import Table from './Table';
 import PullAPI from './PullAPI';
 import MovieCont from "./MovieContainer";
 import TablePresenter from './TablePresenter';
-
+import Header from './component/Header';
+import Contents from './component/Contents';
 
 class App extends React.Component{
 
   render(){
 
-    return <div className='container'>
-      hello world
-      <PullAPI/>
-    </div>;
+    return (
+    <div className='App'>
+        <Header/>
+        <Contents/>
+    </div>
+    );
   }
 }
 

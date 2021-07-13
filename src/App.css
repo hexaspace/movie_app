@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;  /*자동 채우기? 디폴트옆으로 정렬*/
+  flex-direction: column; /*좌우가 아닌 세로로 정렬*/ 
 }
 
 .App-logo {
@@ -26,6 +28,41 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.header {
+  padding: 1rem 2rem; /*위아래 1 양옆2*/
+  background: #5B6169;
+  display: flex;  /*원래 한줄씩 잡아먹는거 연속으로 나오도록*/
+  justify-content: space-between; /*양옆으로 갈라치기*/ 
+  align-items: center;  /*select 높이를 가운데로, 늘리지 않음*/
+}
+.header h1{
+  color: #fff;
+}
+.header p{
+  color: #ddddff;
+}
+.header select{
+  height: 30px;
+  width: 140px;
+  border-radius: 5px;
+  border: none;
+  text-size-adjust: 15px;
+}
+section{
+  padding: 1rem;
+}
+.contents{
+  display: grid;
+  padding: 2rem 2rem;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-auto-rows: 1fr;
+  /* grid-column-start: 1; */
+  /* grid-column-end: -1; */
+  grid-gap : 2rem;
+  align-items: center;
+
 }
 
 @keyframes App-logo-spin {

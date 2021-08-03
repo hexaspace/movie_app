@@ -88,7 +88,7 @@ function Contents() {
         <section>
             <h2>데이터 분석</h2>
             <div className="contents">
-                <div>
+                <div className="chart">
                     <p>월별 매출</p>
                     <Bar data={salesData}
                         options={  //char.js 검색후 다양한 api 사용방법 option /import 한 깃헙도 참고
@@ -103,7 +103,7 @@ function Contents() {
                             }
                         } />
                 </div>
-                <div>
+                <div className="chart">
                 <p>운행 시간</p>
 
                     <Line data={operatingData}
@@ -114,7 +114,7 @@ function Contents() {
                             }
                         } />
                 </div>
-                <div>
+                <div className="chart">
                 <p>시간대별 베터리 소요량</p>
 
                     <Doughnut data={efficiencyData}

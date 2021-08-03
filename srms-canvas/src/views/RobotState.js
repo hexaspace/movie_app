@@ -29,20 +29,25 @@ function RobotState({robotLog}) {
     // 새로운 로그 이면서 로봇 상태가 정지해있을 때  && robots.filter(robot => robot.robotId === robotLog.robotId)[0].state === 0  robots.find(robot => robot.id == robotLog.robotId)
     if ((paths.filter(path => path.id === robotLog.logId).length) === 0 && robotLog.finalNode !== 11 &&
      robots.find(robot => robot.id == robotLog.robotId).condition === 0){  //new log path input
-        let msg = " 번 로봇 / 시작 "+ robotLog.startNode + " / 종료 " + robotLog.finalNode; //pathMessage
+        let msg = robotLog.startNode + " ~ ~ ~ 이동 ~ ~ > " + robotLog.finalNode; //pathMessage
+        let isServe = (robotLog.robotId == robotLog.finalNode) ? 0 : 1; //최종 목적지가 home일때 복귀중
+        let isMove = (robotLog.startNode == robotLog.finalNode) ? 0 : 1; //예외적으로 출발과 도착이 같을때 정지로 설정
+        if (isMove == 0){
+            msg = "도 - - - "+ robotLog.finalNode+" - - - 착";
+        }
         let newPath = {   
             id: robotLog.logId,
             robotId : robotLog.robotId,
             message : msg
         };
-        let isServe = (robotLog.robotId == robotLog.finalNode) ? 0 : 1;
         setRobots(robots.map(robot =>               //해당 로봇의 상태를 1(move)로 변경
             robot.id == robotLog.robotId
-            ? {...robot, condition: 1, serve: isServe}
+            ? {...robot, condition: isMove, serve: isServe}
             : robot));
         setPaths(paths.concat(newPath));
-        console.log(paths);
-        console.log(robots);
+        
+        // console.log(paths);
+        // console.log(robots);
     }
     else if((paths.filter(path => path.id === robotLog.logId).length) === 0 && robotLog.finalNode !== 11 && 
     robots.find(robot => robot.id == robotLog.robotId).condition === 1 && robotLog.midNode === '9999'){
@@ -50,7 +55,7 @@ function RobotState({robotLog}) {
             robot.id == robotLog.robotId
             ? {...robot, condition: 0}
             : robot));
-        let msg = "번 로봇 / 도착 "+ robotLog.finalNode; //pathMessage
+        let msg = "도 - - - "+ robotLog.finalNode+" - - - 착"; //pathMessage
         let newPath = {   
             id: robotLog.logId,
             robotId : robotLog.robotId,

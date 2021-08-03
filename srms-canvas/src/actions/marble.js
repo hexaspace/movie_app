@@ -66,7 +66,7 @@ export function animationRobot(canvas, obj) {
 	const unit = 55;	//레일 한 길이 단위
 	const biasX = 50;	//위치 조정용 치우침
 	const biasY = 45;
-	const r = 18;	//테두리 원의 반지름 크기
+	const r = 15;	//테두리 원의 반지름 크기
 	let currX = obj.start.x * unit + biasX; //로봇 움직임 시작위치 xy
 	let currY = obj.start.y * unit + biasY;
 	const finX = obj.final.x * unit + biasX;
@@ -75,15 +75,22 @@ export function animationRobot(canvas, obj) {
 	const rh = 36;
 	let movex = 0;	//움직일 방향으로 이동한 거리 (하나의 방향씩 처리)
 	let movey = 0;
-
+	const colors = ['red','orange','yellow','green','skyblue','blue','purple','gray','black','pink'];
+	let colorId = colors[obj.robotId-1];
 	ctx.drawImage(image, currX + movex, currY + movey, rw, rh); //로봇 그리기
 	// ctx.arc(currX + r - 3, currY + r, r, 0, Math.PI * 2, true);	//원 그리기
 	if (direction === '%') {	//방향의 마지막일때
 		clearInterval(animate);
 		return end;
 	}
+	//목적지 표기
+		ctx.beginPath();	//도형 테두리 경로그리기
+		ctx.arc(finX + r+2 , finY + r+1, r, 0, Math.PI * 2, true);	//원 그리기
+		ctx.strokeStyle = colorId;	//선 색상 설정
+		ctx.lineWidth = 2;	//선 두께 설정
+		ctx.stroke();	//테두리 그리기
 
-	//--------최종 목적지와 연결선 그리기
+	//--------최종 목적지와 연결선 그리기 시류ㅐ
 	// ctx2.fillStyle = 'black';
 	// ctx2.fillRect(25,25,100,100);
 	// ctx2.beginPath();
@@ -97,8 +104,8 @@ export function animationRobot(canvas, obj) {
 
 	const animate = setInterval(() => {	//반복 시작(애니메이션 효과)
 
-		ctx.clearRect(currX + movex - 4, currY + movey - 1, r * 2 + 2, r * 2 + 2); //이전위치 (원) 삭제 사각형 (로봇보다 큼)
-		// ctx.clearRect(currX  + movex, currY + movey , rw+1, rh); //로봇 삭제 사각형
+		// ctx.clearRect(currX + movex - 4, currY + movey - 1, r * 2 + 2, r * 2 + 2); //이전위치 (원) 삭제 사각형 (로봇보다 큼)
+		ctx.clearRect(currX  + movex , currY + movey , rw, rh); //로봇 삭제 사각형
 
 		switch (direction) {	//이번에 움직일 방향을 문자에 따라 
 			case 'l':
@@ -154,8 +161,3 @@ end=1;
 return end;
 }
 
-		// ctx.beginPath();	//도형 테두리 경로그리기
-		// ctx.arc(currX + movex + r - 3, currY + movey + r, r, 0, Math.PI * 2, true);	//원 그리기
-		// ctx.strokeStyle = colorId;	//선 색상 설정
-		// ctx.lineWidth = 2;	//선 두께 설정
-		// ctx.stroke();	//테두리 그리기

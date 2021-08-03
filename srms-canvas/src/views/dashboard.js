@@ -207,14 +207,14 @@ class Dashboard extends Component {
     return (
       <div>
         <div>
-          <h3>helper robotics</h3>
+          <h1>helper robotics</h1>
         </div>
         <RobotState
             robotLog = {this.state.robot}
           />
         <div>
-          <div style={{ position: 'relative' }}> 
-            <img src="./src/img/rail3-3.png" alt="" id="map" height={'625px'} />
+          <div style={{ position: 'relative' }} className="canvas-img-div"> 
+            <img src="./src/img/rail3-3.png" alt="" id="map" height={'625px'} className="background" />
             <div style={{ position: 'absolute', marginLeft: '0%' }} className="canvas-div">
               <canvas id={'sample'} width={'966px'} height={'625px'} className="canvas"></canvas>
               {/* <canvas id={'sample2'} width={'966px'} height={'625px'} className="canvas2"></canvas> */}

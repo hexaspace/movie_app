@@ -1,0 +1,95 @@
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+p {
+	display: block;
+	text-align: center;
+	width: 100px;
+	margin-left: 25%;
+	// padding: 5px 20px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+// canvas {
+// 	position: absolute;
+// 	left: 500px;
+
+// }
+.canvas {
+	background: #fff0;
+	// border: 1px solid #111;
+	z-index : 1;
+  }
+//   .canvas2 {
+// 	background: #ffa5;
+// 	// border: 1px solid #111;
+// 	z-index : 2;
+	
+//   }
+  .canvas-div {
+	top: 0;
+	left: 250px;
+  }
+  #source {
+	display: none;
+  }
+  .robotImg {
+	display: none;
+  }
+  
+  ul {
+	list-style-type: none;
+	border: 1px solid #559;
+	background: #a19be0;
+	padding: 5px;
+	overflow: auto;	//요소 가로정렬
+	padding-left: 200px;
+  }
+  ul li {
+	float: left;
+
+	background: #fff;
+	margin: 10px;
+	  display: flex;	//요소 가로정렬
+
+  }
+.robotId {
+	
+	font-size: 30px;
+	width: 60px;
+	height: 60px;
+	// padding-left: 10px;
+	// padding-right: 10px;
+	text-align: center;		//텍스트 중앙
+	// vertical-align: middle;
+	line-height: 55px;		//높이와 같은 크기로
+}
+.robotServe{
+	color: gray;
+	// height: 20px;
+}
+.robotState{
+	padding-top: 7px;
+	padding-bottom: 5px;
+	height: 45px;
+	padding-right: 3px;
+}
+.robotPath{
+	float: right;
+	border: 1px solid #229;
+	width: 400px;
+	height: 625px;
+	margin-right: 100px;
+}
+.pathTitle {
+	height: auto;
+	border-bottom: 1px solid #229;
+	padding: 5px;
+	margin-bottom: 10px;
+	background-color: #6986e0;
+	color: #fff;
+}
